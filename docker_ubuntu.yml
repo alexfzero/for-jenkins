@@ -1,4 +1,4 @@
-- hosts: staging_servers
+- hosts: jenkins_servers
   become: 'yes'
   tasks:
     - name: Update apt cache
@@ -17,7 +17,7 @@
           - gnupg-agent
           - python3-pip
           - virtualenv
-          - python3-setuptools  
+          - python3-setuptools
     - name: Add an apt signing key for Docker
       apt_key:
         url: 'https://download.docker.com/linux/ubuntu/gpg'
@@ -46,11 +46,11 @@
     - name: Copy Image
       copy:
         src: mysite.zip
-        dest: /home/slave/mysite.zip
+        dest: /home/alex/Downloads/mysite.zip
     - name: load container from tarball
       docker_image:
         name: mysite:latest
-        load_path: /home/slave/mysite.zip
+        load_path: /home/alex/Downloads/mysite.zip
         state: present
         source: load
     - name: Run Container
@@ -60,4 +60,3 @@
         state: started
         ports:
           - '8000:8000'
-

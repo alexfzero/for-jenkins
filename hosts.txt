@@ -13,16 +13,18 @@ prod_DB
 prod_WEB
 
 [staging_servers]
-linux1 ansible_host=192.168.100.2 
+linux1 ansible_host=192.168.100.2
 
 [staging_servers:vars]
-ansible_user=slave
-ansible_ssh_private_key_file=/var/lib/jenkins/.ssh/id_rsa
+ansible_user=alex
+ansible_ssh_private_key_file=/home/alex/.ssh/id_rsa
 ansible_python_interpreter=/usr/bin/python3
 
+[jenkins_servers]
+linux2 ansible_host=192.168.100.2
 
-
-
-
-#become=true
-
+[jenkins_servers:vars]
+ansible_user=alex
+ansible_sudo_pass=alex1873
+ansible_ssh_private_key_file=/var/lib/jenkins/.ssh/id_rsa
+ansible_python_interpreter=/usr/bin/python3
